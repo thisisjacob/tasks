@@ -1,11 +1,11 @@
 #include <iostream>
 #include "Files.h"
 
-std::string fileToRead = "../testing.txt";
+std::string fileToRead = "../tasks.txt";
 std::string tasks;
 int selection;
 
-int main() {
+int main(void) {
 	tasks = files::readTasks(fileToRead);
 	for (;;) {
 		std::cout << "Tasks: \n" << tasks;
@@ -25,10 +25,10 @@ int main() {
 			tasks = files::removeTask(tasks, line);
 		}
 		else { // program over, successfully return 1
-			return 1;
+			return 0;
 		}
 		files::writeTasks(fileToRead, tasks);
 	}
 	std::cin.get();
-	return -1;
+	return 1;
 }
