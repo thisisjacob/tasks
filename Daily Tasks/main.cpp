@@ -14,9 +14,9 @@ int main(void) {
 		std::cin.ignore();
 		if (selection == 1) {
 			std::cout << "Enter the task.";
-			std::string newTask = std::string();
+			std::string newTask;
 			std::getline(std::cin, newTask);
-			tasks.append(newTask + "\n");
+			tasks = files::addTask(tasks, newTask, files::numberOfTasks(tasks));
 		}
 		else if (selection == 2) {
 			std::cout << "Enter a number of the line you wish to remove.";
@@ -26,6 +26,7 @@ int main(void) {
 		}
 		else { // program over, successfully return 1
 			return 0;
+			
 		}
 		files::writeTasks(fileToRead, tasks);
 	}
