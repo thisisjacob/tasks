@@ -1,11 +1,15 @@
 #include <iostream>
 #include "Files.h"
 
-std::string fileToRead = "../tasks.txt";
-std::string tasks;
-int selection;
+
+const std::string fileToRead = "../tasks.txt";
+
+
 
 int main(void) {
+	std::string tasks;
+	int selection;
+
 	tasks = files::readTasks(fileToRead);
 	for (;;) {
 		std::cout << "Tasks: \n" << tasks;

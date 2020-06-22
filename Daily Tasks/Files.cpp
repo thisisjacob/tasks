@@ -14,7 +14,7 @@ std::string files::readTasks(std::string file)
 	std::string line;
 	int i = 0;
 	while (std::getline(input, line)) {
-		tasks.append(files::filledTask(line, i));
+		tasks.append(files::addTaskTag(line, i));
 		i++;
 	}
 	return tasks;
@@ -26,20 +26,22 @@ void files::writeTasks(std::string file, std::string tasks) {
 	std::string line;
 	output.open(file);
 
+	// returns void if file cannot be opened or created
 	if (!output) {
 		std::cerr << "File not recognized or unable to be opened.";
 		return;
 	}
 
+	// strips Task XXX: from each line, writes to file
 	while (std::getline(stringStream, line)) {
-		output << files::strippedTask(line) << "\n";
+		output << files::stripTaskTag(line) << "\n";
 	}
 }
 
 std::string files::addTask(std::string tasks, std::string task, int currentNumberOfTasks) {
 	std::string newTasks;
 	newTasks.append(tasks);
-	newTasks.append(files::filledTask(task, currentNumberOfTasks));
+	newTasks.append(files::addTaskTag(task, currentNumberOfTasks));
 
 	return newTasks;
 }
@@ -73,11 +75,11 @@ int files::numberOfTasks(std::string tasks) {
 	return lines;
 }
 
-std::string files::strippedTask(std::string task) {
+std::string files::stripTaskTag(std::string task) {
 	return task.substr(TASK_TAG_LENGTH, task.length());
 }
 
-std::string files::filledTask(std::string task, int currentTaskNum) {
+std::string files::addTaskTag(std::string task, int currentTaskNum) {
 	std::string newTask;
 	if (currentTaskNum < 10) {
 		newTask = "Task 00" + std::to_string(currentTaskNum + 1) + ": " + task + "\n";
