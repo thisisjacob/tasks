@@ -8,8 +8,8 @@ int main(void) {
 	std::string tasks;
 	int selection;
 
-	tasks = files::readTasks(fileToRead);
 	for (;;) {
+		tasks = files::readTasks(fileToRead);
 		std::cout << "Tasks:\n" << tasks;
 		std::cout << "\nEnter 1 to add a task\nEnter 2 to remove a task\nAnything else to end the program and save the list:";
 		std::cin >> selection;
