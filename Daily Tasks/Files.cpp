@@ -12,7 +12,7 @@ std::string files::readTasks(std::string file)
 	}
 
 	std::string line;
-	int i = 0;
+	int i = 1;
 	while (std::getline(input, line)) {
 		tasks.append(files::addTaskTag(line, i));
 		i++;
@@ -82,13 +82,13 @@ std::string files::stripTaskTag(std::string task) {
 std::string files::addTaskTag(std::string task, int currentTaskNum) {
 	std::string newTask;
 	if (currentTaskNum < 10) {
-		newTask = "Task 00" + std::to_string(currentTaskNum + 1) + ": " + task + "\n";
+		newTask = "Task 00" + std::to_string(currentTaskNum) + ": " + task + "\n";
 	}
 	else if (currentTaskNum < 100) {
-		newTask = "Task 0" + std::to_string(currentTaskNum + 1) + ": " + task + "\n";
+		newTask = "Task 0" + std::to_string(currentTaskNum) + ": " + task + "\n";
 	}
 	else {
-		newTask = "Task " + std::to_string(currentTaskNum + 1) + ": " + task + "\n";
+		newTask = "Task " + std::to_string(currentTaskNum) + ": " + task + "\n";
 	}
 
 	return newTask;
