@@ -53,6 +53,7 @@ std::string files::removeTask(std::string tasks, int line) {
 	int i = 0;
 	while (std::getline(istream, lineString)) {
 		// formats it to keep within the limit of TASK_TAG_LENGTH, so that parts of the task itself will not be removed during saving
+		lineString.append("\n");
 		if ((i + 1) != line) 
 		{ 
 			newTasks.append(lineString);
